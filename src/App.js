@@ -96,8 +96,8 @@ function App() {
                                         <div className="card-header">
                                             <h4 className="my-0 font-weight-normal">{type}</h4>
                                         </div>
-                                        <div className="card-body">
-                                            <h2 className="card-title">{dish.Name}</h2>
+                                        <div className="card-body text-center">
+                                            <h2 className="card-title text-center">{dish.Name}</h2>
                                             <ul className="list-unstyled mt-3 mb-4">
                                                 {dish.Ingredients.map((ingredient, index) => (
                                                     <li key={index}>{ingredient}</li>
@@ -120,16 +120,18 @@ function App() {
                 </>
             )}
 
-            <div className="mt-5">
+            <div className="mt-5 text-center">
                 <h2>Selected Dishes</h2>
+                <div className="d-flex justify-content-center flex-wrap">
                 {selectedDishes.map((dish, index) => (
-                    <div key={index}>
+                    <div key={index} className="m-2">
                         <h3>{new Date().toLocaleDateString()}</h3>
                         <p>Breakfast: {dish.breakfast.Name}</p>
                         <p>Salad: {dish.salad.Name}</p>
                         <p>Lunch/Dinner: {dish.lunchDinner.Name}</p>
                     </div>
                 ))}
+                </div>
             </div>
         </div>
     );
