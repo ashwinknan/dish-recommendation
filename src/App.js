@@ -88,7 +88,7 @@ function App() {
             ) : (
                 <>
                     <div className="row mt-5">
-                        {['Breakfast', 'Salad', 'LunchDinner'].map(type => {
+                        {['breakfast', 'salad', 'lunchdinner'].map(type => {
                             const dish = recommendations[type];
                             return (
                                 <div key={type} className="col-md-4">
