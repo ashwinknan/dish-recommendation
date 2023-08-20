@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import * as XLSX from 'xlsx';
+import './App.css';
 
 function App() {
     const [dishes, setDishes] = useState([]);
@@ -76,7 +77,7 @@ function App() {
             {!recommendations ? (
                 <button onClick={generateDishForToday}>Generate Dish for Today</button>
             ) : (
-                <div>
+                <div className ="dishes-container">
                     {['breakfast', 'salad', 'lunchDinner'].map(type => {
                         const dish = recommendations[type];
                         return (
