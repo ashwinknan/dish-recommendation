@@ -88,13 +88,13 @@ function App() {
             ) : (
                 <>
                     <div className="row mt-5">
-                        {['breakfast', 'salad', 'lunchDinner'].map(type => {
+                        {['Breakfast', 'Salad', 'LunchDinner'].map(type => {
                             const dish = recommendations[type];
                             return (
                                 <div key={type} className="col-md-4">
                                     <div className="card mb-4 shadow-sm">
                                         <div className="card-header">
-                                            <h4 className="my-0 font-weight-normal">{type}</h4>
+                                            <h4 className="my-0 font-weight-normal text-center">{type}</h4>
                                         </div>
                                         <div className="card-body text-center">
                                             <h2 className="card-title text-center">{dish.Name}</h2>
