@@ -1,3 +1,16 @@
+.bg-gradient {
+  background: linear-gradient(90deg, rgba(238,238,238,1) 0%, rgba(209,209,209,1) 50%, rgba(173,173,173,1) 100%);
+}
+
+.font-title {
+  font-family: 'Arial Black', sans-serif;
+}
+
+.button-center {
+  margin: 0 auto;
+  display: block;
+}
+
 .dishes-container {
   display: flex;
   justify-content: space-between;
