@@ -24,7 +24,7 @@ function DishCard({ type, dish, ingredients, onRefresh }) {
                 <div className="card-body">
                     <div className="d-flex justify-content-center align-items-center mb-3">
                         <h5 className="card-title mb-0 d-inline">{dish.Name}</h5>
-                        <button className="btn btn-sm btn-outline-primary ml-2" title="View Recipe">
+                        <button className="btn btn-sm btn-outline-primary ml-4" title="View Recipe">
                             <RecipeIcon className="bi bi-book" />
                         </button>
                     </div>
