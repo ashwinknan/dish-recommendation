@@ -1,9 +1,12 @@
 import React from 'react';
 import { ReactComponent as RefreshIcon } from 'bootstrap-icons/icons/arrow-repeat.svg';
+import { toTitleCase } from '../utils'; // Adjust the path if you place the utils.js in a subdirectory.
+
 
 function DishCard({ type, dish, ingredients, onRefresh }) {
     const ingredientString = ingredients[dish.Name];
-    const ingredientArray = ingredientString ? ingredientString.split(',').map(ingredient => ingredient.trim()) : [];
+    const ingredientArray = ingredientString ? ingredientString.split(',').map(ingredient => toTitleCase(ingredient.trim())) : [];
+
 
     return (
         <div className="col-md-4">
