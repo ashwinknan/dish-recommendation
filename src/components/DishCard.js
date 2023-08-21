@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ReactComponent as RefreshIcon } from 'bootstrap-icons/icons/arrow-repeat.svg';
 import { ReactComponent as RecipeIcon } from 'bootstrap-icons/icons/book.svg'; 
 import { toTitleCase } from '../utils';
