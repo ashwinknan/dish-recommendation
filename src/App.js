@@ -5,7 +5,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import DishCard from './components/DishCard'; // Import DishCard component
 import SelectionHistory from './components/SelectionHistory'; // Import SelectionHistory component
 
-
 function App() {
     const [dishes, setDishes] = useState([]);
     const [recommendations, setRecommendations] = useState(null);
@@ -70,10 +69,12 @@ function App() {
     };
 
     const acceptRecommendation = () => {
-        if (recommendations) {
-            setSelectedDishes([...selectedDishes, recommendations]);
-            setRecommendations(null);
-        }
+        setSelectedDishes(prevDishes => [...prevDishes, recommendations]);
+        setRecommendations(null);
+    };
+
+    const rejectRecommendation = () => {
+        setRecommendations(null);
     };
 
     return (
@@ -83,13 +84,19 @@ function App() {
                 {!recommendations ? (
                     <button className="btn btn-primary mt-4" onClick={generateDishForToday}>Generate Dish for Today</button>
                 ) : (
-                    <div className="row mt-4">
-                        {['breakfast', 'salad', 'lunchDinner'].map(type => (
-                            <DishCard key={type} type={type} dish={recommendations[type]} /> // Use DishCard component
-                        ))}
-                    </div>
+                    <>
+                        <div className="row mt-4">
+                            {['breakfast', 'salad', 'lunchDinner'].map(type => (
+                                <DishCard key={type} type={type} dish={recommendations[type]} /> 
+                            ))}
+                        </div>
+                        <div className="mt-3">
+                            <button className="btn btn-success mr-3" onClick={acceptRecommendation}>Accept Recommendation</button>
+                            <button className="btn btn-danger" onClick={rejectRecommendation}>Reject Recommendation</button>
+                        </div>
+                    </>
                 )}
-                <SelectionHistory selectedDishes={selectedDishes} /> // Use SelectionHistory component
+                <SelectionHistory selectedDishes={selectedDishes} />
             </div>
         </div>
     );
