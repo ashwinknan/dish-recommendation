@@ -34,3 +34,21 @@
   }
 }
 
+/* For the card title */
+.dish-card-title {
+  font-size: 1.5rem; /* Larger text size but smaller than page header */
+  text-transform: capitalize;
+}
+
+/* For the dish name */
+.dish-card-dish-name {
+  font-size: 1.25rem; /* Medium text size */
+  text-align: center;
+}
+
+/* For the ingredients */
+.dish-card-ingredients {
+  font-size: 1rem; /* Smallest text size */
+}
+
+
