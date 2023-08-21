@@ -86,6 +86,24 @@ function App() {
             alert('One or more dish types have no entries. Please ensure there are dishes for each type in the Excel file.');
         }
     };
+
+    const refreshDishForType = async (type) => {
+        try {
+            const dishArray = dishes.filter(d => d.Type === type.replace("lunchDinner", "lunch + dinner"));
+            const randomDish = dishArray[Math.floor(Math.random() * dishArray.length)];
+
+            if (randomDish) {
+                setRecommendations(prevRecommendations => ({
+                    ...prevRecommendations,
+                    [type]: randomDish
+                }));
+
+                fetchIngredientsFromAPI(randomDish.Name);
+            }
+        } catch (error) {
+            console.error("Error refreshing dish:", error);
+        }
+    };
     
 
     return (
@@ -97,7 +115,7 @@ function App() {
                 ) : (
                     <div className="row mt-4">
                         {['breakfast', 'salad', 'lunchDinner'].map(type => (
-                            <DishCard key={type} type={type} dish={recommendations[type]} ingredients={ingredientsData} />
+                            <DishCard key={type} type={type} dish={recommendations[type]} ingredients={ingredientsData} onRefresh={refreshDishForType} />
                         ))}
                     </div>
                 )}

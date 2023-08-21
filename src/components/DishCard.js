@@ -1,8 +1,7 @@
 import React from 'react';
 import { ReactComponent as RefreshIcon } from 'bootstrap-icons/icons/arrow-repeat.svg';
 
-
-function DishCard({ type, dish, ingredients }) {
+function DishCard({ type, dish, ingredients, onRefresh }) {
     const ingredientString = ingredients[dish.Name];
     const ingredientArray = ingredientString ? ingredientString.split(',').map(ingredient => ingredient.trim()) : [];
 
@@ -13,7 +12,7 @@ function DishCard({ type, dish, ingredients }) {
                     <div className="flex-grow-1 text-center">
                         {type.charAt(0).toUpperCase() + type.slice(1)}
                     </div>
-                    <button className="btn-refresh" title="Generate another dish">
+                    <button className="btn-refresh" title="Generate another dish" onClick={() => onRefresh(type)}>
                         <RefreshIcon className="bi bi-arrow-repeat" />
                     </button>
                 </div>
