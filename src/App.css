@@ -51,4 +51,14 @@
   font-size: 1rem; /* Smallest text size */
 }
 
+.ingredient-list {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.ingredient-item {
+  margin-bottom: 5px;
+  font-size: 16px;
+  color: #555;
+}
 
