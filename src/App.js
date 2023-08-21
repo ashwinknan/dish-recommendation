@@ -11,6 +11,7 @@ function App() {
     const [recommendations, setRecommendations] = useState(null);
     const [ingredientsData, setIngredientsData] = useState({});
     const [selectedDishes, setSelectedDishes] = useState([]);
+    const [recipesData, setRecipesData] = useState({});
 
     useEffect(() => {
         fetch('/dish_database.xlsx')
@@ -50,6 +51,19 @@ function App() {
             console.error("Failed to fetch ingredients:", error);
         }
     }
+
+    const fetchRecipeFromAPI = async (dishName) => {
+        try {
+            const response = await axios.post('https://blooming-gorge-97260-a53af4c12ad9.herokuapp.com/getRecipe', { dishName });
+            const recipe = response.data.recipe;
+            
+            // Storing the recipe in the state might look a bit different depending on your state structure.
+            setRecipesData(prevState => ({ ...prevState, [dishName]: recipe }));
+        } catch (error) {
+            console.error("Failed to fetch recipe:", error);
+        }
+    }
+    
 
     const generateDishForToday = () => {
         const breakfasts = dishes.filter(d => d.Type === "breakfast");
@@ -115,7 +129,15 @@ function App() {
                 ) : (
                     <div className="row mt-4">
                         {['breakfast', 'salad', 'lunchDinner'].map(type => (
-                            <DishCard key={type} type={type} dish={recommendations[type]} ingredients={ingredientsData} onRefresh={refreshDishForType} />
+                            <DishCard 
+                                key={type} 
+                                type={type} 
+                                dish={recommendations[type]} 
+                                ingredients={ingredientsData} 
+                                onRefresh={refreshDishForType}
+                                viewRecipe={fetchRecipeFromAPI} 
+                                recipes={recipesData}
+                            />
                         ))}
                     </div>
                 )}

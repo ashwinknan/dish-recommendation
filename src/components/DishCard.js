@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ReactComponent as RefreshIcon } from 'bootstrap-icons/icons/arrow-repeat.svg';
-import { ReactComponent as RecipeIcon } from 'bootstrap-icons/icons/book.svg'; // Import the recipe book icon
-import { toTitleCase } from '../utils'; // Adjust the path if you place the utils.js in a subdirectory.
+import { ReactComponent as RecipeIcon } from 'bootstrap-icons/icons/book.svg'; 
+import { toTitleCase } from '../utils';
 
-
-function DishCard({ type, dish, ingredients, onRefresh }) {
+function DishCard({ type, dish, ingredients, onRefresh, viewRecipe, recipes }) {
+    const [showRecipeModal, setShowRecipeModal] = useState(false);
     const ingredientString = ingredients[dish.Name];
     const ingredientArray = ingredientString ? ingredientString.split(',').map(ingredient => toTitleCase(ingredient.trim())) : [];
 
+    const handleViewRecipeClick = async (dishName) => {
+        if (!recipes[dishName]) {
+            await viewRecipe(dishName);
+        }
+        setShowRecipeModal(true);
+    };
 
     return (
         <div className="col-md-4">
@@ -20,11 +26,11 @@ function DishCard({ type, dish, ingredients, onRefresh }) {
                         <RefreshIcon className="bi bi-arrow-repeat" />
                     </button>
                 </div>
-
+    
                 <div className="card-body">
                     <div className="d-flex justify-content-center align-items-center mb-3">
                         <h5 className="card-title mb-0 d-inline">{dish.Name}</h5>
-                        <button className="btn btn-sm btn-outline-primary ml-4" title="View Recipe">
+                        <button className="btn btn-sm btn-outline-primary ml-4" title="View Recipe" data-toggle="modal" data-target={`#recipeModal-${dish.Name}`}>
                             <RecipeIcon className="bi bi-book" />
                         </button>
                     </div>
@@ -36,10 +42,28 @@ function DishCard({ type, dish, ingredients, onRefresh }) {
                         </ul>
                     )}
                 </div>
-
+            </div>
+    
+            <div className="modal fade" id={`recipeModal-${dish.Name}`} tabIndex="-1" role="dialog" aria-labelledby={`recipeModalLabel-${dish.Name}`} aria-hidden="true">
+                <div className="modal-dialog modal-dialog-scrollable">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id={`recipeModalLabel-${dish.Name}`}>Recipe for {dish.Name}</h5>
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div className="modal-body">
+                            {recipes[dish.Name]}
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    );
+    );    
 }
 
 export default DishCard;
