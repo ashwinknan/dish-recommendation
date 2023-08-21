@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import * as XLSX from 'xlsx';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import DishCard from './components/DishCard'; // Import DishCard component
+import SelectionHistory from './components/SelectionHistory'; // Import SelectionHistory component
 
 
 function App() {
@@ -75,63 +77,19 @@ function App() {
     };
 
     return (
-        <div className="container-fluid bg-gradient">
-
-            <h1 className="text-center mt-5 font-title">Ashwin's Dish Recommender System</h1>
-
-            {!recommendations ? (
-                <div className="d-flex justify-content-center mt-5">
-                    <button className="btn btn-primary" onClick={generateDishForToday}>
-                        Generate Dish for Today
-                    </button>
-                </div>
-            ) : (
-                <>
-                    <div className="row mt-5">
-                        {['breakfast', 'salad', 'lunchDinner'].map(type => {
-                            const dish = recommendations[type];
-                            return (
-                                <div key={type} className="col-md-4">
-                                    <div className="card mb-4 shadow-sm">
-                                        <div className="card-header">
-                                            <h4 className="my-0 font-weight-normal text-center">{type}</h4>
-                                        </div>
-                                        <div className="card-body text-center">
-                                            <h2 className="card-title text-center">{dish.Name}</h2>
-                                            <ul className="list-unstyled mt-3 mb-4">
-                                                {dish.Ingredients.map((ingredient, index) => (
-                                                    <li key={index}>{ingredient}</li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            );
-                        })}
+        <div className="container mt-5">
+            <div className="text-center mb-5">
+                <h1>Ashwin's Dish Recommender System</h1>
+                {!recommendations ? (
+                    <button className="btn btn-primary mt-4" onClick={generateDishForToday}>Generate Dish for Today</button>
+                ) : (
+                    <div className="row mt-4">
+                        {['breakfast', 'salad', 'lunchDinner'].map(type => (
+                            <DishCard key={type} type={type} dish={recommendations[type]} /> // Use DishCard component
+                        ))}
                     </div>
-                    <div className="d-flex justify-content-center mt-4">
-                        <button className="btn btn-success mx-2" onClick={acceptRecommendation}>
-                            Accept Recommendation
-                        </button>
-                        <button className="btn btn-danger mx-2" onClick={() => setRecommendations(null)}>
-                            Reject Recommendation
-                        </button>
-                    </div>
-                </>
-            )}
-
-            <div className="mt-5 text-center">
-                <h2>Selected Dishes</h2>
-                <div className="d-flex justify-content-center flex-wrap">
-                {selectedDishes.map((dish, index) => (
-                    <div key={index} className="m-2">
-                        <h3>{new Date().toLocaleDateString()}</h3>
-                        <p>Breakfast: {dish.breakfast.Name}</p>
-                        <p>Salad: {dish.salad.Name}</p>
-                        <p>Lunch/Dinner: {dish.lunchDinner.Name}</p>
-                    </div>
-                ))}
-                </div>
+                )}
+                <SelectionHistory selectedDishes={selectedDishes} /> // Use SelectionHistory component
             </div>
         </div>
     );
