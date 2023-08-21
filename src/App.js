@@ -42,7 +42,7 @@ function App() {
 
     const fetchIngredientsFromAPI = async (dishName) => {
         try {
-            const response = await axios.post('https://blooming-gorge-97260.herokuapp.com/getIngredients', { dishName });
+            const response = await axios.post('https://blooming-gorge-97260-a53af4c12ad9.herokuapp.com/getIngredients', { dishName });
             const ingredients = response.data.ingredients;
             console.log("Ingredients received for", dishName, ":", ingredients);
             setIngredientsData(prevState => ({ ...prevState, [dishName]: ingredients }));
