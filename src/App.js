@@ -25,7 +25,7 @@ function App() {
             });
     }, []);
 
-   /* function transformDishes(dishes) {
+   function transformDishes(dishes) {
         const dishMap = new Map();
 
         dishes.forEach(dish => {
@@ -38,7 +38,7 @@ function App() {
         });
 
         return Array.from(dishMap.values());
-    }*/
+    }
 
     const fetchIngredientsFromAPI = async (dishName) => {
         try {
