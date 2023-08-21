@@ -15,3 +15,4 @@ const SelectionHistory = ({ selectedDishes }) => (
 );
 
 export default SelectionHistory;
+
