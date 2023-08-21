@@ -62,3 +62,14 @@
   color: #555;
 }
 
+.btn-refresh {
+  background-color: transparent; /* Transparent background */
+  border: none; /* No border */
+  cursor: pointer; /* Hand cursor on hover */
+}
+
+.btn-refresh:hover {
+  color: #f8f9fa; /* Light text color on hover */
+}
+
+
