@@ -9,12 +9,15 @@ function DishCard({ type, dish, ingredients }) {
     return (
         <div className="col-md-4">
             <div className="card mb-4">
-                <div className="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-                 {type.charAt(0).toUpperCase() + type.slice(1)}
+                <div className="card-header bg-primary text-white d-flex align-items-center">
+                    <div className="flex-grow-1 text-center">
+                        {type.charAt(0).toUpperCase() + type.slice(1)}
+                    </div>
                     <button className="btn-refresh" title="Generate another dish">
                         <RefreshIcon className="bi bi-arrow-repeat" />
                     </button>
                 </div>
+
                 <div className="card-body">
                     <h5 className="card-title">{dish.Name}</h5>
                     {ingredientArray.length > 0 && (
