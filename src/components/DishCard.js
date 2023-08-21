@@ -4,7 +4,7 @@ import { ReactComponent as RecipeIcon } from 'bootstrap-icons/icons/book.svg';
 import { toTitleCase } from '../utils';
 
 function DishCard({ type, dish, ingredients, onRefresh, viewRecipe, recipes }) {
-    const [showRecipeModal, setShowRecipeModal] = useState(false);
+    //const [showRecipeModal, setShowRecipeModal] = useState(false);
     const ingredientString = ingredients[dish.Name];
     const ingredientArray = ingredientString ? ingredientString.split(',').map(ingredient => toTitleCase(ingredient.trim())) : [];
 
@@ -12,7 +12,6 @@ function DishCard({ type, dish, ingredients, onRefresh, viewRecipe, recipes }) {
         if (!recipes[dishName]) {
             await viewRecipe(dishName);
         }
-        setShowRecipeModal(true);
     };
 
     return (
@@ -30,7 +29,7 @@ function DishCard({ type, dish, ingredients, onRefresh, viewRecipe, recipes }) {
                 <div className="card-body">
                     <div className="d-flex justify-content-center align-items-center mb-3">
                         <h5 className="card-title mb-0 d-inline">{dish.Name}</h5>
-                        <button className="btn btn-sm btn-outline-primary ml-4" title="View Recipe" data-toggle="modal" data-target={`#recipeModal-${dish.Name}`}>
+                        <button className="btn btn-sm btn-outline-primary ml-4" title="View Recipe" data-toggle="modal" data-target={`#recipeModal-${dish.Name}`} onClick={() => handleViewRecipeClick(dish.Name)}>
                             <RecipeIcon className="bi bi-book" />
                         </button>
                     </div>
