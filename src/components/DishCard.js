@@ -1,5 +1,6 @@
 import React from 'react';
 import { ReactComponent as RefreshIcon } from 'bootstrap-icons/icons/arrow-repeat.svg';
+import { ReactComponent as RecipeIcon } from 'bootstrap-icons/icons/book.svg'; // Import the recipe book icon
 import { toTitleCase } from '../utils'; // Adjust the path if you place the utils.js in a subdirectory.
 
 
@@ -21,7 +22,12 @@ function DishCard({ type, dish, ingredients, onRefresh }) {
                 </div>
 
                 <div className="card-body">
-                    <h5 className="card-title">{dish.Name}</h5>
+                    <div className="d-flex justify-content-between align-items-center mb-3">
+                        <h5 className="card-title mb-0">{dish.Name}</h5>
+                        <button className="btn btn-sm btn-outline-primary" title="View Recipe">
+                            <RecipeIcon className="bi bi-book" />
+                        </button>
+                    </div>
                     {ingredientArray.length > 0 && (
                         <ul className="ingredient-list">
                             {ingredientArray.map((ingredient, index) => (
@@ -30,6 +36,7 @@ function DishCard({ type, dish, ingredients, onRefresh }) {
                         </ul>
                     )}
                 </div>
+
             </div>
         </div>
     );
