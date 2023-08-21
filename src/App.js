@@ -44,6 +44,7 @@ function App() {
         try {
             const response = await axios.post('https://blooming-gorge-97260-a53af4c12ad9.herokuapp.com/getIngredients', { dishName });
             const ingredients = response.data.ingredients;
+            console.log("Ingredients received for", dishName, ":", ingredients);
             setIngredientsData(prevState => ({ ...prevState, [dishName]: ingredients }));
         } catch (error) {
             console.error("Failed to fetch ingredients:", error);
