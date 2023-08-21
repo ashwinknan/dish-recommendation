@@ -52,7 +52,7 @@
 }
 
 .ingredient-list {
-  list-style-type: disc;
+  list-style-type: none; /* This removes the bullet points */
   padding-left: 20px;
 }
 
