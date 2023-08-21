@@ -72,4 +72,13 @@
   color: #f8f9fa; /* Light text color on hover */
 }
 
+.btn-outline-primary {
+  border-color: #007bff;
+  color: #007bff;
+}
+
+.btn-outline-primary:hover {
+  background-color: #007bff;
+  color: #fff;
+}
 
